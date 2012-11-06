@@ -4,6 +4,12 @@ REM                  Dos Environment Set-up File
 REM ===================================================================
 
 REM ==============
+REM Environment Variables from the Command Line
+REM ==============
+
+set EMULATOR=%1
+
+REM ==============
 REM Custom Aliases
 REM ==============
 doskey ;alias=doskey /m
