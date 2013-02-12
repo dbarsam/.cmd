@@ -12,14 +12,12 @@ if "%1" == "help" goto HELP
 if not "%4" == "" goto HELP
 
 rem ============
-rem Get the executable from the path
+rem Test the first parameters as a directory
 rem ============
-for %%f in (%1) do (
-    if exist %%~sf\nul (
-        set GREPDIR=%1
-    ) else (
-        echo Cannot evaluate %1 as a directory
-    )
+if exist %~s1\nul (
+    set GREPDIR=%1
+) else (
+    echo Cannot evaluate %1 as a directory
 )
 
 if defined GREPDIR (
