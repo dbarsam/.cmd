@@ -22,6 +22,11 @@ doskey ;ex=explorer .
 doskey ;pd=pushd
 doskey ;po=popd
 
+REM ==============
+REM Script Aliases
+REM ==============
+doskey ;gvimgrep=%~dp0\scripts\Get-FileContainingTextWithGViM.cmd $*
+
 REM ============
 REM External Configurations
 REM ============
