@@ -8,20 +8,32 @@ setlocal enableextensions enabledelayedexpansion
 rem ============
 rem Custom Help Message
 rem ============
-if %1 == "help" goto HELP
+if [%1]==[help] goto :HELP
 
 rem ============
 rem Get the Installation folder
 rem ============
-if %1 == "" (
+if [%1] == [] (
     set TARGETPATH="C:\Program Files\Windows Sysinternals"
 ) else ( 
     set TARGETPATH=%1
 )
 
+rem ============
+rem Kill Any Existing Processes
+rem ============
 if not exist !TARGETPATH! (
     echo ERROR: [!TARGETPATH!]  doesn't exists
     goto EXIT
+) else (
+    for /f %%a in ('dir /b !TARGETPATH!') do (
+        tasklist /NH | findstr /b /i %%a 
+        if !ERRORLEVEL! == 0 (
+            echo Killing %%a ...
+            taskkill /im %%a /f
+            set RUNNINGEXES=!RUNNINGEXES!;%%a
+        )
+    )
 )
 
 rem ============
@@ -71,6 +83,19 @@ rem ============
 rem Execute the Command
 rem ============
 if defined SCRIPTCOMMAND echo "!SCRIPTCOMMAND!" && !SCRIPTCOMMAND!
+
+rem ============
+rem Restart Any Existing Processes
+rem ============
+call :RESTART "%RUNNINGEXES%"
+:RESTART
+for /f "tokens=1* delims=;" %%i in ("%~1") do (
+    echo Launching %%i
+    pushd !TARGETPATH!
+    start %%i
+    popd
+    call :RESTART "%%j"
+)
 goto EXIT
 
 rem ============
