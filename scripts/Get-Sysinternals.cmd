@@ -16,7 +16,7 @@ rem ============
 if [%1] == [] (
     set TARGETPATH="C:\Program Files\Windows Sysinternals"
 ) else ( 
-    set TARGETPATH=%1
+    set TARGETPATH="%~1"
 )
 
 rem ============
@@ -27,11 +27,18 @@ if not exist !TARGETPATH! (
     goto EXIT
 ) else (
     for /f %%a in ('dir /b !TARGETPATH!') do (
-        tasklist /NH | findstr /b /i %%a 
-        if !ERRORLEVEL! == 0 (
-            echo Killing %%a ...
-            taskkill /im %%a /f
-            set RUNNINGEXES=!RUNNINGEXES!;%%a
+        rem Double For Loop to Deal with the Double <CR> character
+        for /f "delims=" %%A in ( 'wmic process where name^="%%a" get processid^,commandline /value 2^> nul') do (
+            for /f "tokens=1,2 delims==" %%y in ("%%A") do (
+                if "%%y" == "CommandLine" (
+                    rem echo Backing Up [%%a - %%z]
+                    set RUNNINGEXES=!RUNNINGEXES!;%%z
+                )
+                if "%%y" == "ProcessId" (
+                    echo Killing [%%a - PID:%%z]
+                    taskkill /f /t /pid %%z >nul 2>&1
+                )
+            )
         )
     )
 )
@@ -89,14 +96,14 @@ rem Restart Any Existing Processes
 rem ============
 call :RESTART "%RUNNINGEXES%"
 :RESTART
-for /f "tokens=1* delims=;" %%i in ("%~1") do (
+for /f "tokens=1* delims=;" %%i in (%*) do (
     echo Launching %%i
     pushd !TARGETPATH!
-    start %%i
+    start "" %%i
     popd
     call :RESTART "%%j"
 )
-goto EXIT
+goto :EXIT
 
 rem ============
 rem Help Command Display
