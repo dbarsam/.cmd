@@ -95,6 +95,8 @@ rem ============
 rem Restart Any Existing Processes
 rem ============
 call :RESTART "%RUNNINGEXES%"
+goto :EXIT
+
 :RESTART
 for /f "tokens=1* delims=;" %%i in (%*) do (
     echo Launching %%i
