@@ -28,6 +28,11 @@ if exist "%VS80COMNTOOLS%vsvars32.bat" (
 )
 :ENVDONE
 
+REM ==============
+REM Custom Aliases
+REM ==============
+doskey ;dlldump=dumpbin /exports $t
+
 goto EXIT
 REM ==============
 REM Error Handling
