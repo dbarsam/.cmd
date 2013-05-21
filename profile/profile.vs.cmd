@@ -10,6 +10,10 @@ REM Custom Environment
 REM ==================
 
 REM Invoke Visual Studio's Environment
+if exist "%VS110COMNTOOLS%VsDevCmd.bat" (
+    call "%VS110COMNTOOLS%VsDevCmd.bat"
+    goto ENVDONE
+) 
 if exist "%VS100COMNTOOLS%vsvars32.bat" (
     call "%VS100COMNTOOLS%vsvars32.bat"
     goto ENVDONE
