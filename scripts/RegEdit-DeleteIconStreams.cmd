@@ -2,7 +2,8 @@
 rem ===================================================================
 rem                      RegEdit Delete Icon Streams
 rem ===================================================================
-rem http://www.colincochrane.com/post/2007/10/Windows-Vista-Disappearing-System-Tray-Icons-Fix.aspx
+rem Reference:
+rem     http://www.colincochrane.com/post/2007/10/Windows-Vista-Disappearing-System-Tray-Icons-Fix.aspx
 rem ===================================================================
 
 rem ============

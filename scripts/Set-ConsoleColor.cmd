@@ -1,8 +1,8 @@
 @echo off
 setlocal enabledelayedexpansion
-REM ===================================================================
-REM                        Set Console Color
-REM ===================================================================
+rem ===================================================================
+rem                        Set Console Color
+rem ===================================================================
 
 if "%1" == "" (
     echo Missing Foreground Color Parameter
@@ -38,7 +38,7 @@ goto exit
 rem ============
 rem Help Command Display
 rem ============
-:HELP
+:help
 echo Set the color on dos console with the color
 echo.
 echo Set-ConsoleColor [fg] [bg]
@@ -68,5 +68,5 @@ echo    Set-ConsoleColor DarkGray Black
 rem ============
 rem Exit
 rem ============
-:EXIT
+:exit
 setlocal

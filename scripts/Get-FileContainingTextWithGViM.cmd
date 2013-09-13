@@ -7,9 +7,9 @@ rem ===================================================================
 rem ============
 rem Safety Check
 rem ============
-if "%1" == "" goto HELP
-if "%1" == "help" goto HELP
-if not "%4" == "" goto HELP
+if "%1" == "" goto help
+if "%1" == "help" goto help
+if not "%4" == "" goto help
 
 rem ============
 rem Get the command
@@ -38,15 +38,15 @@ rem ============
 rem Execute
 rem ============
 if defined SCRIPTCOMMAND echo "%SCRIPTCOMMAND%" && %SCRIPTCOMMAND%
-goto EXIT
+goto exit
 
 rem ============
 rem Help Command Display
 rem ============
-:HELP
+:help
 echo Finds files containing matching text and opens them with GViM
 echo.
-echo Get-FileContainingTextWithGViM [path] [filter [text]
+echo Get-FileContainingTextWithGViM [path] [filter] [text]
 echo    path     The search path
 echo    filter   The file filter
 echo    text     The search text
@@ -57,5 +57,5 @@ echo     Get-FileContainingTextWithGViM . *.txt TEXT
 rem ============
 rem Exit
 rem ============
-:EXIT
+:exit
 endlocal
