@@ -1,17 +1,17 @@
 @echo off
-REM ===================================================================
-REM                  Dos Environment Set-up File
-REM ===================================================================
+rem ===================================================================
+rem                  Dos Environment Set-up File
+rem ===================================================================
 
-REM ==============
-REM Environment Variables from the Command Line
-REM ==============
+rem ==============
+rem Environment Variables from the Command Line
+rem ==============
 
 set EMULATOR=%1
 
-REM ==============
-REM Custom Aliases
-REM ==============
+rem ==============
+rem Custom Aliases
+rem ==============
 doskey ;alias=doskey /m
 doskey ;history=doskey /h
 doskey ;help=hh.exe ms-its:C:\WINDOWS\Help\ntcmds.chm::/ntcmds.htm
@@ -22,28 +22,30 @@ doskey ;ex=explorer .
 doskey ;pd=pushd
 doskey ;po=popd
 
-REM ==============
-REM Script Aliases
-REM ==============
-doskey ;gvimgrep=%~dp0\scripts\Get-FileContainingTextWithGViM.cmd $*
+rem ==============
+rem Script Aliases
+rem ==============
+doskey ;fgrep=%~dp0\scripts\Get-FileContainingText.cmd $*
+doskey ;ggrep=%~dp0\scripts\Get-FileContainingTextWithGViM.cmd $*
+doskey ;elevate=%~dp0\scripts\elevate.cmd $t
 
-REM ============
-REM External Configurations
-REM ============
+rem ============
+rem External Configurations
+rem ============
 for %%f in (%~dpn0\%~n0.*.cmd) do (
     if exist %%f (
         call %%f
     )
 )
 
-goto EXIT
-REM ==============
-REM Error Handling
-REM ==============
-:ERROR
+goto exit
+rem ==============
+rem Error Handling
+rem ==============
+:error
 
-REM ===================================================================
-REM End of Script
-REM ===================================================================
-:EXIT
+rem ===================================================================
+rem End of Script
+rem ===================================================================
+:exit
 
