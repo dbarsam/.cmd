@@ -19,7 +19,7 @@ doskey ;profile=edit %~f0
 doskey ;find=dir /s /b . ^| findstr /i /c:"$1" 
 doskey ;grep=findstr /s /n /i /m /c:"$1" $2
 doskey ;ex=explorer .
-doskey ;pd=pushd
+doskey ;pd=pushd $*
 doskey ;po=popd
 
 rem ==============
