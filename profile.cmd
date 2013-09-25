@@ -25,9 +25,11 @@ doskey ;po=popd
 rem ==============
 rem Script Aliases
 rem ==============
+doskey ;version=%~dp0\scripts\Get-VersionInfo.cmd $*
+doskey ;update=%~dp0\scripts\Update-EnvironmentVariables.cmd $*
 doskey ;fgrep=%~dp0\scripts\Get-FileContainingText.cmd $*
 doskey ;ggrep=%~dp0\scripts\Get-FileContainingTextWithGViM.cmd $*
-doskey ;elevate=%~dp0\scripts\elevate.cmd $t
+doskey ;elevate=%~dp0\scripts\elevate.cmd $t $*
 
 rem ============
 rem External Configurations
