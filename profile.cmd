@@ -19,6 +19,7 @@ doskey ;profile=edit %~f0
 doskey ;find=dir /s /b . ^| findstr /i /c:"$1" 
 doskey ;grep=findstr /s /n /i /m /c:"$1" $2
 doskey ;ex=explorer .
+doskey ;desktop=pushd %USERPROFILE%\desktop
 doskey ;pd=pushd $*
 doskey ;po=popd
 doskey ;prune=for /f "usebackq delims=" %%d in (`"dir /ad/b/s | sort /R"`) do @echo "%%d" ^& rd "%%d" 2^> nul
