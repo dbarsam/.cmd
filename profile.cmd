@@ -13,6 +13,7 @@ rem ==============
 rem Custom Aliases
 rem ==============
 doskey ;alias=doskey /m
+doskey ;path=echo %%PATH:;=^&echo.%%
 doskey ;history=doskey /h
 doskey ;help=hh.exe ms-its:C:\WINDOWS\Help\ntcmds.chm::/ntcmds.htm
 doskey ;profile=edit %~f0
