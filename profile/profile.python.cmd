@@ -8,6 +8,7 @@ REM ===================================================================
 REM ==============
 REM Custom Aliases
 REM ==============
+doskey ;pyclean=del /s /f *.pyc
 for %%p in ("%PROGRAMFILES%" "%PROGRAMFILES(x86)%") do (
     for %%v in (26 27) do (
         if exist "%%~p\python%%v\python.exe" (
