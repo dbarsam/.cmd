@@ -4,19 +4,22 @@ REM                  Dos Environment Set-up File
 REM -------------------------------------------------------------------
 REM                             Python
 REM ===================================================================
-
 REM ==============
 REM Custom Aliases
 REM ==============
-doskey ;pyclean=del /s /f *.pyc
-for %%p in ("%PROGRAMFILES%" "%PROGRAMFILES(x86)%") do (
-    for %%v in (26 27) do (
-        if exist "%%~p\python%%v\python.exe" (
-            doskey ;p%%v="%%~p\python%%v\python.exe" $*
+doskey ;pyclean=del /s /f *.pyc *.pyo
+setlocal enableextensions enabledelayedexpansion
+for %%p in ("%PROGRAMFILES(x86)%" "%PROGRAMFILES%") do (
+    for /f "delims=" %%d in ('dir /b "%%~p\python*" ^| findstr /i /r "python[0-9][0-9]*$"') do (
+        if exist "%%p\%%d\python.exe" (
+            set pver=%%d
+            set pver=!pver:~6!
+            if %%p=="%PROGRAMFILES(x86)%" doskey ;p!pver!32="%%~p\%%d\python.exe" $*
+            if %%p=="%PROGRAMFILES%"      doskey ;p!pver!="%%~p\%%d\python.exe" $*
         )
     )
 )
-
+endlocal
 goto EXIT
 REM ==============
 REM Error Handling
