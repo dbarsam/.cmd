@@ -23,7 +23,7 @@ doskey ;ex=explorer .
 doskey ;desktop=pushd %USERPROFILE%\desktop
 doskey ;pd=pushd $*
 doskey ;po=popd
-doskey ;prune=for /f "usebackq delims=" %%d in (`"dir /ad/b/s | sort /R"`) do @echo "%%d" ^& rd "%%d" 2^> nul
+doskey ;prune=for /f "usebackq delims=" %%d in (`"dir /ad/b/s | sort /R"`) do @rd "%%d" 2^>^&1 ^| ^>nul findstr "The directory is not empty." ^|^| (@echo Deleted %%d)
 
 rem ==============
 rem Script Aliases
