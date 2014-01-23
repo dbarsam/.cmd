@@ -28,6 +28,8 @@ doskey ;prune=for /f "usebackq delims=" %%d in (`"dir /ad/b/s | sort /R"`) do @r
 rem ==============
 rem Script Aliases
 rem ==============
+doskey ;sl-=%~dp0\scripts\Set-Location.cmd -
+doskey ;sl=%~dp0\scripts\Set-Location.cmd $*
 doskey ;version=%~dp0\scripts\Get-VersionInfo.cmd $*
 doskey ;update=%~dp0\scripts\Update-EnvironmentVariables.cmd $*
 doskey ;fgrep=%~dp0\scripts\Get-FileContainingText.cmd $*
